@@ -1,0 +1,22 @@
+
+# Environnement virtuel
+.venv/
+venv/
+**/.venv/
+**/venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Variables sensibles
+.env
+.env.*
+
+# Sauvegardes SQL
+*.sql
+*.sql.*
+
+# Logs et fichiers temporaires
+*.log
+.DS_Store

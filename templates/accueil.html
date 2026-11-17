@@ -1,0 +1,116 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="dashboard">
+
+    <!-- En-tête -->
+    <div class="dashboard-header">
+        <h2>Tableau de bord</h2>
+        <p>Bienvenue dans votre espace de gestion de bibliothèque.</p>
+    </div>
+
+    <!-- Cartes statistiques -->
+    <div class="stats-container">
+
+        <div class="stat-card blue">
+            <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+                </svg>
+            </div>
+            <div>
+                <p>Total des livres</p>
+                <h3>{{ total_livres }}</h3>
+            </div>
+        </div>
+
+        <div class="stat-card green">
+            <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="10" cy="7" r="4"/>
+                    <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <div>
+                <p>Total des adhérents</p>
+                <h3>{{ total_adherents }}</h3>
+            </div>
+        </div>
+
+        <div class="stat-card orange">
+            <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 6h13"/>
+                    <path d="M8 12h13"/>
+                    <path d="M8 18h13"/>
+                    <path d="M3 6h.01"/>
+                    <path d="M3 12h.01"/>
+                    <path d="M3 18h.01"/>
+                </svg>
+            </div>
+            <div>
+                <p>Emprunts en cours</p>
+                <h3>{{ emprunts_en_cours }}</h3>
+            </div>
+        </div>
+
+        <div class="stat-card purple">
+            <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+                    <path d="M9 7h7"/>
+                    <path d="M9 11h7"/>
+                </svg>
+            </div>
+            <div>
+                <p>Livres disponibles</p>
+                <h3>{{ livres_disponibles }}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Accès rapide -->
+    <div class="dashboard-section">
+
+        <h3>Accès rapide</h3>
+
+        <div class="quick-actions">
+
+            <a href="/ajouter-livre" class="action-card">
+                Ajouter un livre
+            </a>
+
+            <a href="/ajouter-adherent" class="action-card">
+                Ajouter un adhérent
+            </a>
+
+            <a href="/ajouter-emprunt" class="action-card">
+                Enregistrer un emprunt
+            </a>
+
+            <a href="/emprunts" class="action-card">
+                Consulter les emprunts
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

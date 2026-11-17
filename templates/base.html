@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestion Bibliothèque</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- Barre latérale -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>BiblioManager</h2>
+                <p>Gestion de bibliothèque</p>
+            </div>
+
+            <nav>
+
+                <a href="/"
+                   class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    Tableau de bord
+                </a>
+
+                <a href="/livres"
+                   class="nav-link {% if request.path == '/livres' %}active{% endif %}">
+                    Gestion des livres
+                </a>
+
+                <a href="/ajouter-livre"
+                   class="nav-link {% if request.path == '/ajouter-livre' %}active{% endif %}">
+                    Ajouter un livre
+                </a>
+
+                <a href="/adherents"
+                   class="nav-link {% if request.path == '/adherents' %}active{% endif %}">
+                    Gestion des adhérents
+                </a>
+
+                <a href="/emprunts"
+                   class="nav-link {% if request.path == '/emprunts' %}active{% endif %}">
+                    Gestion des emprunts
+                </a>
+
+                <a href="/ajouter-emprunt"
+                   class="nav-link {% if request.path == '/ajouter-emprunt' %}active{% endif %}">
+                    Nouvel emprunt
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Bibliothèque Management</p>
+                <small>Version 1.0</small>
+            </div>
+
+        </aside>
+
+        <!-- Contenu principal -->
+        <div class="main-container">
+
+            <header class="topbar">
+                <h3>Espace de gestion</h3>
+                <span>Administration</span>
+            </header>
+
+            <main class="content">
+
+                <!-- Messages Flask -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for categorie, message in messages %}
+                        <div class="message {{ categorie }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+
+                {% block contenu %}
+                {% endblock %}
+
+            </main>
+
+            <footer class="footer">
+                © 2026 - Gestion de Bibliothèque
+            </footer>
+
+        </div>
+
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

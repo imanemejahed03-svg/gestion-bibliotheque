@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="form-page">
+
+    <div class="form-header">
+        <h2>Ajouter un nouveau livre</h2>
+        <p>Renseignez les informations du livre à ajouter à la bibliothèque.</p>
+    </div>
+
+    {% if erreur %}
+        <p class="form-error">{{ erreur }}</p>
+    {% endif %}
+
+    <form method="POST"
+          action="{{ url_for('ajouter_livre_page') }}"
+          id="formLivre"
+          class="main-form">
+
+        <div class="form-group">
+            <label for="titre">Titre du livre</label>
+            <input type="text"
+                   id="titre"
+                   name="titre"
+                   placeholder="Entrez le titre du livre"
+                   required>
+            <small class="field-error" id="titreError"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="auteur">Auteur</label>
+            <input type="text"
+                   id="auteur"
+                   name="auteur"
+                   placeholder="Entrez le nom de l'auteur"
+                   required>
+            <small class="field-error" id="auteurError"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="annee_publication">Année de publication</label>
+            <input type="number"
+                   id="annee_publication"
+                   name="annee_publication"
+                   placeholder="Exemple : 2024"
+                   min="1">
+            <small class="field-error" id="anneeError"></small>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">
+                Ajouter le livre
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

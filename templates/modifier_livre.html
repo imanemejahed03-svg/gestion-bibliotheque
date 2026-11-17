@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<h2>Modifier un livre</h2>
+
+<form method="POST">
+
+    <label>Titre :</label>
+    <input type="text" name="titre"
+           value="{{ livre[1] }}" required>
+
+    <br><br>
+
+    <label>Auteur :</label>
+    <input type="text" name="auteur"
+           value="{{ livre[2] }}" required>
+
+    <br><br>
+
+    <label>Année :</label>
+    <input type="number" name="annee_publication"
+           value="{{ livre[3] or '' }}">
+
+    <br><br>
+
+    <button type="submit">Enregistrer les modifications</button>
+
+</form>
+
+{% endblock %}

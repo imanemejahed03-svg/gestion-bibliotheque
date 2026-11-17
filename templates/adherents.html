@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="page-header">
+
+    <h2>Liste des adhérents</h2>
+
+    <p>Consultez et gérez les membres de votre bibliothèque.</p>
+
+</div>
+
+<div class="table-actions">
+
+    <input
+        type="text"
+        id="searchAdherents"
+        class="search-input"
+        placeholder="Rechercher un adhérent..."
+    >
+
+    <a href="/ajouter-adherent" class="btn-add">
+        + Ajouter un adhérent
+    </a>
+
+</div>
+
+<div class="table-container">
+
+    <table class="data-table" id="adherentsTable">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for adherent in adherents %}
+
+            <tr class="adherent-row">
+
+                <td>{{ adherent[0] }}</td>
+                <td>{{ adherent[1] }}</td>
+                <td>{{ adherent[2] }}</td>
+                <td>{{ adherent[3] }}</td>
+                <td>{{ adherent[4] }}</td>
+
+                <td class="actions">
+
+                    <a href="{{ url_for('modifier_adherent_page', id_adherent=adherent[0]) }}"
+                       class="btn-edit">
+                        Modifier
+                    </a>
+
+                    <form method="POST"
+                          action="{{ url_for('supprimer_adherent_page', id_adherent=adherent[0]) }}"
+                          class="inline-form">
+
+                        <button type="submit"
+                                class="btn-delete"
+                                onclick="return confirm('Voulez-vous supprimer cet adhérent ?')">
+                            Supprimer
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="6" class="empty-message">
+                    Aucun adhérent trouvé.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            <tr id="noAdherentResult" style="display: none;">
+                <td colspan="6" class="empty-message">
+                    Aucun résultat correspondant à votre recherche.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

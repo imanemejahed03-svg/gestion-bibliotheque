@@ -1,0 +1,115 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="page-header">
+    <div>
+        <h2>Liste des emprunts</h2>
+        <p>Consultez et gérez les emprunts de la bibliothèque.</p>
+    </div>
+
+    <a href="{{ url_for('ajouter_emprunt_page') }}" class="btn-add">
+        + Enregistrer un emprunt
+    </a>
+</div>
+
+<!-- Recherche -->
+<div class="table-actions">
+
+    <input
+        type="text"
+        id="searchEmprunts"
+        class="search-input"
+        placeholder="Rechercher un emprunt..."
+    >
+
+</div>
+
+<div class="table-container">
+
+    <table class="data-table" id="empruntsTable">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Livre</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour prévue</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for emprunt in emprunts %}
+
+            <tr class="emprunt-row">
+
+                <td>{{ emprunt[0] }}</td>
+                <td>{{ emprunt[1] }}</td>
+                <td>{{ emprunt[2] }}</td>
+                <td>{{ emprunt[3] }}</td>
+                <td>{{ emprunt[4] }}</td>
+                <td>{{ emprunt[5] }}</td>
+
+                <td>
+                    {% if emprunt[6] == "En cours" %}
+                        <span class="status borrowed">En cours</span>
+                    {% else %}
+                        <span class="status available">Retourné</span>
+                    {% endif %}
+                </td>
+
+                <td class="actions">
+
+                    {% if emprunt[6] == "En cours" %}
+
+                    <form method="POST"
+                          action="{{ url_for('retourner_livre_page', id_emprunt=emprunt[0]) }}"
+                          class="inline-form">
+
+                        <button type="submit"
+                                class="btn-edit"
+                                onclick="return confirm('Confirmer le retour de ce livre ?')">
+                            Retourner
+                        </button>
+
+                    </form>
+
+                    {% else %}
+
+                        <span class="empty-message">Déjà retourné</span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="8" class="empty-message">
+                    Aucun emprunt trouvé.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            <tr id="noEmpruntResult" style="display: none;">
+                <td colspan="8" class="empty-message">
+                    Aucun résultat correspondant à votre recherche.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

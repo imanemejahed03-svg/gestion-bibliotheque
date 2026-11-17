@@ -1,0 +1,108 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="page-header">
+    <h2>Liste des livres</h2>
+    <p>Consultez et gérez les livres de votre bibliothèque.</p>
+</div>
+
+<!-- Barre de recherche -->
+<div class="search-container">
+    <input
+        type="text"
+        id="searchLivres"
+        class="search-input"
+        placeholder="Rechercher par titre ou auteur..."
+    >
+</div>
+
+<!-- Tableau des livres -->
+<div class="table-container">
+
+    <table class="data-table">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Année</th>
+                <th>Disponibilité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableLivres">
+
+            {% for livre in livres %}
+
+            <tr class="ligne-livre">
+
+                <td>{{ livre[0] }}</td>
+
+                <td>{{ livre[1] }}</td>
+
+                <td>{{ livre[2] }}</td>
+
+                <td>{{ livre[3] }}</td>
+
+                <td>
+                    {% if livre[4] %}
+                        <span class="status available">
+                            Disponible
+                        </span>
+                    {% else %}
+                        <span class="status borrowed">
+                            Emprunté
+                        </span>
+                    {% endif %}
+                </td>
+
+                <td class="actions">
+
+                    <a href="{{ url_for('modifier_livre_page', id_livre=livre[0]) }}"
+                       class="btn-edit">
+                        Modifier
+                    </a>
+
+                    <form method="POST"
+                          action="{{ url_for('supprimer_livre_page', id_livre=livre[0]) }}"
+                          class="inline-form">
+
+                        <button type="submit"
+                                class="btn-delete"
+                                onclick="return confirm('Voulez-vous supprimer ce livre ?')">
+                            Supprimer
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="6" class="empty-message">
+                    Aucun livre trouvé.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            <tr id="aucunResultat" style="display: none;">
+                <td colspan="6" class="empty-message">
+                    Aucun livre ne correspond à votre recherche.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

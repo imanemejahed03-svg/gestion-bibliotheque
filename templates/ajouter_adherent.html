@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div class="form-page">
+
+    <div class="form-header">
+        <h2>Ajouter un adhérent</h2>
+        <p>Remplissez les informations du nouvel adhérent.</p>
+    </div>
+
+    {% if erreur %}
+        <p class="form-error">{{ erreur }}</p>
+    {% endif %}
+
+    <form method="POST" id="formAdherent" class="main-form">
+
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom"
+                   placeholder="Entrez le nom" required>
+            <small class="field-error" id="nomError"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom"
+                   placeholder="Entrez le prénom" required>
+            <small class="field-error" id="prenomError"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email"
+                   placeholder="exemple@email.com" required>
+            <small class="field-error" id="emailError"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone"
+                   placeholder="Entrez le numéro de téléphone">
+            <small class="field-error" id="telephoneError"></small>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">
+                Ajouter l'adhérent
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

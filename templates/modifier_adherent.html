@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<h2>Modifier un adhérent</h2>
+
+<form method="POST">
+
+    <label>Nom :</label>
+    <input type="text" name="nom" value="{{ adherent[1] }}" required>
+
+    <label>Prénom :</label>
+    <input type="text" name="prenom" value="{{ adherent[2] }}" required>
+
+    <label>Email :</label>
+    <input type="email" name="email" value="{{ adherent[3] }}">
+
+    <label>Téléphone :</label>
+    <input type="text" name="telephone" value="{{ adherent[4] }}">
+
+    <button type="submit">Enregistrer les modifications</button>
+
+</form>
+
+{% endblock %}
